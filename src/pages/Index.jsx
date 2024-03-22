@@ -29,11 +29,14 @@ const projects = [
   },
 ];
 
-const ProjectModal = ({ isOpen, onClose, project }) => (
-  <Modal isOpen={isOpen} onClose={onClose} size="xl">
-    <ModalOverlay />
-    <ModalContent>
-      <ModalHeader>{project.title}</ModalHeader>
+const ProjectModal = ({ isOpen, onClose, project }) => {
+  if (!project) return null;
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} size="xl">
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{project.title}</ModalHeader>
       <ModalCloseButton />
       <ModalBody>
         <Image src={project.image} mb={4} />
@@ -52,7 +55,8 @@ const ProjectModal = ({ isOpen, onClose, project }) => (
       </ModalFooter>
     </ModalContent>
   </Modal>
-);
+  );
+};
 
 const Index = () => {
   const [selectedProject, setSelectedProject] = useState(null);
